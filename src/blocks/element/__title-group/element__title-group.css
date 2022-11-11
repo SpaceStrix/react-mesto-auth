@@ -1,0 +1,10 @@
+.element__title-group {
+  padding: 22px 21px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 10px;
+
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+}

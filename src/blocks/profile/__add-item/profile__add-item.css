@@ -1,0 +1,29 @@
+.profile__add-item {
+	width: 150px;
+	height: 50px;
+	background: transparent url(../../../images/add.svg) center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	padding: 0;
+	border: 2px solid #ffffff;
+	border-radius: 2px;
+	transition: all 0.3s linear;
+}
+
+.profile__add-item:hover {
+	opacity: 0.6;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+	.profile__add-item {
+		margin-top: 35px;
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+	.profile__add-item {
+		margin: 0 auto;
+		max-width: 70%;
+	}
+}

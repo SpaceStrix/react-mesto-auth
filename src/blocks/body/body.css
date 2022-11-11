@@ -1,0 +1,15 @@
+.body {
+	margin: 0;
+	font-family: 'Inter', Helvetica, sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+	color: #fff;
+	box-sizing: border-box;
+	background: #000;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	text-rendering: optimizeLegibility;
+}

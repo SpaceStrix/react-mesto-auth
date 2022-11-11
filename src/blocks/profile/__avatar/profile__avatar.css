@@ -1,0 +1,30 @@
+.profile__avatar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+}
+
+.profile__avatar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: url(../../../images/editing-icon.svg) rgba(0, 0, 0, 0.8) no-repeat
+    center;
+  background-size: 24px 24px;
+  cursor: pointer;
+}
+
+.profile__avatar:hover:before {
+  opacity: 1;
+}

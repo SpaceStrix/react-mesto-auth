@@ -1,0 +1,12 @@
+.profile__person {
+	display: flex;
+	align-items: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+	.profile__person {
+		width: 100%;
+		justify-content: center;
+		flex-flow: column wrap;
+	}
+}

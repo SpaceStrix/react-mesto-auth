@@ -1,12 +1,12 @@
-const Header = () => {
+import { NavLink } from "react-router-dom";
+
+export const Header = () => {
   return (
     <header className="header">
-      <a href="#" className="header__logo" target="_blank"></a>
-      <a href="#" className="authorization">
+      <NavLink to="/" className="header__logo" target="_blank"></NavLink>
+      <NavLink to="#" className="authorization">
         Войти
-      </a>
+      </NavLink>
     </header>
   );
 };
-
-export default Header;

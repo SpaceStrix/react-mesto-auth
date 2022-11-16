@@ -10,12 +10,12 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 
-import * as Auth from "./Auth";
+import * as auth from "./Auth";
 import { ProtectedRoute } from "./ProtectedRoute";
 //
 //
 import { Login } from "./Login";
-import Register from "./Register";
+import { Register } from "./Register";
 
 //
 
@@ -33,21 +33,23 @@ const App = () => {
   //
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(null);
 
   const navigate = useNavigate(); //
 
   useEffect(() => {
-    api
-      .getInitialData()
-      .then(([getDataCard, getDataUserInfo]) => {
-        setCurrentUser(getDataUserInfo);
-        setCards(getDataCard);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }, []);
+    if (loggedIn) {
+      api
+        .getInitialData()
+        .then(([getDataCard, getDataUserInfo]) => {
+          setCurrentUser(getDataUserInfo);
+          setCards(getDataCard);
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+  }, [loggedIn]);
   //
   //
 
@@ -134,6 +136,13 @@ const App = () => {
       });
   };
 
+  const cBackAuth = useCallback(data => {
+    localStorage.setItem("jwt", data.token);
+    setLoggedIn(true);
+    setUserData(data.user);
+    navigate("/");
+  }, []);
+
   const tokenCheck = useCallback(async () => {
     try {
       setLoading(true);
@@ -143,7 +152,7 @@ const App = () => {
         throw new Error("no token");
       }
 
-      const user = await Auth.checkToken(jwt);
+      const user = await auth.checkToken(jwt);
       if (!user) {
         throw new Error("invalid user");
       }
@@ -160,30 +169,47 @@ const App = () => {
   const cBackLogin = useCallback(async ({ password, email }) => {
     try {
       setLoading(true);
-      const data = await Auth.login(password, email);
-
+      const data = await auth.login({ password, email });
       if (!data) {
         throw new Error("Неверный пароль или почта");
       }
-      if (data.jwt) {
-        localStorage.setItem("jwt", data.jwt);
-        setLoggedIn(true);
-        setUserData(data.email);
-        navigate("/");
+      if (data.token) {
+        cBackAuth(data);
       }
+      return data;
     } catch {
     } finally {
       setLoading(false);
     }
   }, []);
 
+  const cBackReg = useCallback(
+    async ({ password, email }) => {
+      try {
+        setLoading(true);
+        const data = await auth.register({ password, email });
+        setTimeout(() => {
+          cBackLogin({ password, email });
+        }, 300);
+
+        cBackAuth(data);
+        return data;
+      } catch {
+      } finally {
+        setLoading(false);
+      }
+    },
+    [cBackAuth]
+  );
+
   useEffect(() => {
     tokenCheck();
   }, [tokenCheck]);
 
-  // if (loading) {
-  //   return "... loading";
-  // }
+  if (loading) {
+    return "... loading";
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <>
@@ -206,7 +232,7 @@ const App = () => {
             }
           />
           <Route path="/sign-in" element={<Login onLogin={cBackLogin} />} />
-          <Route path="/sign-up" element={<Register />} />
+          <Route path="/sign-up" element={<Register onReg={cBackReg} />} />
         </Routes>
         <Footer />
 

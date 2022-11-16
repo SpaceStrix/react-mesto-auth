@@ -202,6 +202,15 @@ const App = () => {
     [cBackAuth]
   );
 
+  const cBackLogOut = () => {
+    setTimeout(() => {
+      localStorage.removeItem("jwt");
+      if (loggedIn) {
+        navigate("/sign-in");
+      }
+    }, 10);
+  };
+
   useEffect(() => {
     tokenCheck();
   }, [tokenCheck]);
@@ -213,7 +222,7 @@ const App = () => {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <>
-        <Header />
+        <Header onLogout={cBackLogOut} />
         <Routes>
           <Route
             path="/"

@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co/"; //Базовый URL
+export const BASE_URL = "https://auth.nomoreparties.co"; //Базовый URL
 
 const checkResponse = res =>
   res.ok ? res.json() : Promise.reject(`что-то не так ${res.statusText}`); // ответ сервера

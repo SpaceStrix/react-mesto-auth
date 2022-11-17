@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-export const Login = ({ loggedIn, onLogin }) => {
+export const Login = ({ onLogin }) => {
   const [userData, setUserData] = useState({
     password: "",
     email: "",

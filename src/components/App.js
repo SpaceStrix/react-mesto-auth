@@ -4,7 +4,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { Header } from "./Heades";
 import { Loader } from "./Loader";
 import Main from "./Main";
-import Footer from "./Footer";
+import { Footer } from "./Footer";
 import ImagePopup from "./ImagePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
@@ -237,6 +237,7 @@ const App = () => {
                     onCardLike={handleCardLike}
                     onCardDelete={handleCardDelete}
                   />
+                  <Footer />
                 </ProtectedRoute>
               }
             />
@@ -247,7 +248,6 @@ const App = () => {
             <Route path="/sign-up" element={<Register onReg={cBackReg} />} />
           </Routes>
         )}
-        <Footer />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}

@@ -9,7 +9,7 @@ export const Header = ({ onLogout, email }) => {
         <span className="header__user-email">{email}</span>
         <Routes>
           <Route
-            path="/sing-up"
+            path="/sign-up"
             element={
               <NavLink to="/sign-in" className="authorization">
                 Войти

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 export const Register = ({ onReg }) => {
@@ -46,9 +47,9 @@ export const Register = ({ onReg }) => {
         </button>
         <p className="signup__log-in">
           Уже зарегистрированы?&nbsp;
-          <a href="#" className="signup__log-in-link">
+          <NavLink to="/sign-in" className="signup__log-in-link">
             Войти
-          </a>
+          </NavLink>
         </p>
       </form>
     </section>

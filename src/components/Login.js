@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-export const Login = ({ onLogin }) => {
+export const Login = ({ loggedIn, onLogin }) => {
   const [userData, setUserData] = useState({
     password: "",
     email: "",
@@ -10,7 +9,6 @@ export const Login = ({ onLogin }) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
-
   const handleSubmit = e => {
     e.preventDefault();
 

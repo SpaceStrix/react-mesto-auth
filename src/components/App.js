@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 import { Header } from "./Heades";
+import { Loader } from "./Loader";
 import Main from "./Main";
 import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
@@ -28,15 +29,12 @@ const App = () => {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-
   //
   //
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
-
   const navigate = useNavigate(); //
-
   useEffect(() => {
     if (loggedIn) {
       api
@@ -158,6 +156,7 @@ const App = () => {
       }
 
       if (user) {
+        setUserData(user.data.email);
         setLoggedIn(true);
       }
     } catch {
@@ -176,6 +175,7 @@ const App = () => {
       if (data.token) {
         cBackAuth(data);
       }
+      setUserData(email);
       return data;
     } catch {
     } finally {
@@ -206,6 +206,7 @@ const App = () => {
     setTimeout(() => {
       localStorage.removeItem("jwt");
       if (loggedIn) {
+        setUserData("");
         navigate("/sign-in");
       }
     }, 10);
@@ -215,34 +216,37 @@ const App = () => {
     tokenCheck();
   }, [tokenCheck]);
 
-  if (loading) {
-    return "... loading";
-  }
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <>
-        <Header onLogout={cBackLogOut} />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute loggedIn={loggedIn}>
-                <Main
-                  onEditProfile={handleEditProfileClick}
-                  onEditAvatar={handleEditAvatarClick}
-                  onAddPlace={handleAddPlaceClick}
-                  onCardClick={handleCardClick}
-                  cards={cards}
-                  onCardLike={handleCardLike}
-                  onCardDelete={handleCardDelete}
-                />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/sign-in" element={<Login onLogin={cBackLogin} />} />
-          <Route path="/sign-up" element={<Register onReg={cBackReg} />} />
-        </Routes>
+        <Header onLogout={cBackLogOut} email={userData} />
+        {loading ? (
+          <Loader />
+        ) : (
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute loggedIn={loggedIn}>
+                  <Main
+                    onEditProfile={handleEditProfileClick}
+                    onEditAvatar={handleEditAvatarClick}
+                    onAddPlace={handleAddPlaceClick}
+                    onCardClick={handleCardClick}
+                    cards={cards}
+                    onCardLike={handleCardLike}
+                    onCardDelete={handleCardDelete}
+                  />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/sign-in"
+              element={<Login onLogin={cBackLogin} loggedIn={loggedIn} />}
+            />
+            <Route path="/sign-up" element={<Register onReg={cBackReg} />} />
+          </Routes>
+        )}
         <Footer />
 
         <EditAvatarPopup

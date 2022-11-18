@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 
 import { Header } from "./Heades";
 import { Loader } from "./Loader";
-import Main from "./Main";
 import { Footer } from "./Footer";
+import { Main } from "./Main";
+import { PageNotFound } from "./PageNotFound";
+
 import ImagePopup from "./ImagePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
@@ -35,6 +37,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate(); //
+
   useEffect(() => {
     if (loggedIn) {
       api
@@ -246,6 +249,8 @@ const App = () => {
               path="sign-up"
               element={<Register onReg={cBackReg} loggedIn={loggedIn} />}
             />
+            <Route path="404" element={<Navigate to="/404" replace />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         )}
 

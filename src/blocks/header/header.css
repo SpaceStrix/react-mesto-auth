@@ -201,3 +201,24 @@
     opacity: 0;
   }
 }
+
+.page404 {
+  margin: 0 auto;
+  max-width: 880px;
+  text-align: center;
+}
+.vertical-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notfound__link {
+  text-decoration: none;
+  color: tomato;
+  transition: all 0.3s linear;
+}
+
+.notfound__link:hover {
+  color: #a9a9a9;
+}

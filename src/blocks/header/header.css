@@ -46,12 +46,7 @@
 
   width: 100%;
   height: 100%;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-
+  margin-top: 60px;
   text-align: center;
 }
 .signup-form {
@@ -73,6 +68,7 @@
   font-size: 24px;
   line-height: 29px;
   color: #ffffff;
+  text-align: center;
 }
 
 .signup__input {

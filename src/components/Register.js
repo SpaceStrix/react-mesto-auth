@@ -1,9 +1,7 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { NavLink, Navigate } from "react-router-dom";
+import { useState } from "react";
 
 export const Register = ({ loggedIn, onReg }) => {
-  const navigate = useNavigate();
-
   const [userData, setUserData] = useState({
     password: "",
     email: "",
@@ -20,9 +18,9 @@ export const Register = ({ loggedIn, onReg }) => {
     onReg(userData);
   };
 
-  useEffect(() => {
-    if (loggedIn) navigate("/");
-  }, [loggedIn]);
+  if (loggedIn) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <section className="signup">

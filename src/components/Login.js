@@ -1,7 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import React, { useState } from "react";
 export const Login = ({ loggedIn, onLogin }) => {
-  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     password: "",
     email: "",
@@ -20,11 +19,9 @@ export const Login = ({ loggedIn, onLogin }) => {
     onLogin(userData);
   };
 
-  useEffect(() => {
-    if (loggedIn) {
-      navigate("/");
-    }
-  }, [loggedIn]);
+  if (loggedIn) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <section className="signup">

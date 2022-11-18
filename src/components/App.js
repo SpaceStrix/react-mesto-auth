@@ -203,13 +203,10 @@ const App = () => {
   );
 
   const cBackLogOut = () => {
-    setTimeout(() => {
-      localStorage.removeItem("jwt");
-      if (loggedIn) {
-        setUserData("");
-        navigate("/sign-in");
-      }
-    }, 10);
+    localStorage.removeItem("jwt");
+    setUserData("");
+    navigate("sign-in");
+    setLoggedIn(false);
   };
 
   useEffect(() => {
@@ -242,11 +239,11 @@ const App = () => {
               }
             />
             <Route
-              path="/sign-in"
+              path="sign-in"
               element={<Login onLogin={cBackLogin} loggedIn={loggedIn} />}
             />
             <Route
-              path="/sign-up"
+              path="sign-up"
               element={<Register onReg={cBackReg} loggedIn={loggedIn} />}
             />
           </Routes>

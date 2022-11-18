@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-export const Login = ({ onLogin }) => {
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+export const Login = ({ loggedIn, onLogin }) => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     password: "",
     email: "",
@@ -18,11 +20,17 @@ export const Login = ({ onLogin }) => {
     onLogin(userData);
   };
 
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/");
+    }
+  }, [loggedIn]);
+
   return (
     <section className="signup">
       <form action="" className="signup-form" onSubmit={handleSubmit}>
         <fieldset className="signup__group">
-          <legend className="signup__title">Вход </legend>
+          <legend className="signup__title">Вход</legend>
           <input
             name="email"
             value={userData.email}

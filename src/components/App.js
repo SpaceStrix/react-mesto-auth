@@ -245,7 +245,10 @@ const App = () => {
               path="/sign-in"
               element={<Login onLogin={cBackLogin} loggedIn={loggedIn} />}
             />
-            <Route path="/sign-up" element={<Register onReg={cBackReg} />} />
+            <Route
+              path="/sign-up"
+              element={<Register onReg={cBackReg} loggedIn={loggedIn} />}
+            />
           </Routes>
         )}
 

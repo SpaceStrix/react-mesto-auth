@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-const Card = ({ card, onCardClick, onCardLike, onCardDelete }) => {
+export const Card = ({ card, onCardClick, onCardLike, onCardDelete }) => {
   const currentUser = useContext(CurrentUserContext);
   const handleClick = () => onCardClick(card);
   const handleLikeCard = () => onCardLike(card);
@@ -50,5 +50,3 @@ const Card = ({ card, onCardClick, onCardLike, onCardDelete }) => {
     </article>
   );
 };
-
-export default Card;

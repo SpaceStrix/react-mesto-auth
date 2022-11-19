@@ -18,9 +18,7 @@ export const Register = ({ loggedIn, onReg }) => {
     onReg(userData);
   };
 
-  if (loggedIn) {
-    return <Navigate to={"/"} />;
-  }
+  if (loggedIn) return <Navigate to={"/"} />;
 
   return (
     <section className="signup">

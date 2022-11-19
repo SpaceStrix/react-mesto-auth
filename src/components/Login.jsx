@@ -19,9 +19,7 @@ export const Login = ({ loggedIn, onLogin }) => {
     onLogin(userData);
   };
 
-  if (loggedIn) {
-    return <Navigate to={"/"} />;
-  }
+  if (loggedIn) return <Navigate to={"/"} />;
 
   return (
     <section className="signup">

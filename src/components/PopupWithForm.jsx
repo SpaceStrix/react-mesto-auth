@@ -1,4 +1,4 @@
-const PopupWithForm = ({
+export const PopupWithForm = ({
   name,
   isOpen,
   onClose,
@@ -34,5 +34,3 @@ const PopupWithForm = ({
     </div>
   );
 };
-
-export default PopupWithForm;

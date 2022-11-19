@@ -1,6 +1,6 @@
 import header from "../blocks/header/header.css";
 
-export const Loader = () => {
+export const Loading = () => {
   return (
     <div className="spinner">
       <div></div>

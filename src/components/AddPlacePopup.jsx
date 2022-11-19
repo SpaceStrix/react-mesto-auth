@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 
-import PopupWithForm from "./PopupWithForm";
+import { PopupWithForm } from "./PopupWithForm";
 
-const AddPlacePopup = ({ isOpen, onClose, onAddPlace }) => {
+export const AddPlacePopup = ({ isOpen, onClose, onAddPlace }) => {
   const cardTitleRef = useRef();
   const cardUrlRef = useRef();
 
@@ -62,5 +62,3 @@ const AddPlacePopup = ({ isOpen, onClose, onAddPlace }) => {
     </PopupWithForm>
   );
 };
-
-export default AddPlacePopup;

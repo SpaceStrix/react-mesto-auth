@@ -1,28 +1,27 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 import { Header } from "./Heades";
-import { Loader } from "./Loader";
+import { Loading } from "./Loading";
 import { Footer } from "./Footer";
 import { Main } from "./Main";
 import { PageNotFound } from "./PageNotFound";
+import { InfoTooltip } from "./InfoTooltip";
 
-import ImagePopup from "./ImagePopup";
-import CurrentUserContext from "../contexts/CurrentUserContext";
-import EditProfilePopup from "./EditProfilePopup";
-import EditAvatarPopup from "./EditAvatarPopup";
-import AddPlacePopup from "./AddPlacePopup";
+import { ImagePopup } from "./ImagePopup";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { EditProfilePopup } from "./EditProfilePopup";
+import { EditAvatarPopup } from "./EditAvatarPopup";
+import { AddPlacePopup } from "./AddPlacePopup";
 
 import * as auth from "./Auth";
-import { ProtectedRoute } from "./ProtectedRoute";
-//
-//
 import { Login } from "./Login";
 import { Register } from "./Register";
 
 //
 
-import api from "../utils/api";
+import { api } from "../utils/api";
 
 const App = () => {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -31,8 +30,7 @@ const App = () => {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  //
-  //
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
@@ -51,8 +49,6 @@ const App = () => {
         });
     }
   }, [loggedIn]);
-  //
-  //
 
   // =========================================
   // callback open
@@ -221,7 +217,7 @@ const App = () => {
       <>
         <Header onLogout={cBackLogOut} email={userData} />
         {loading ? (
-          <Loader />
+          <Loading />
         ) : (
           <Routes>
             <Route

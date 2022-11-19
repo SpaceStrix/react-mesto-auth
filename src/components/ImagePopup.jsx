@@ -1,4 +1,4 @@
-const ImagePopup = ({ card, name, onClose, onCardClick }) => {
+export const ImagePopup = ({ card, name, onClose, onCardClick }) => {
   return (
     <div
       className={`popup popup_type_${name} ${card.link ? "popup_opened" : ""}`}
@@ -26,4 +26,3 @@ const ImagePopup = ({ card, name, onClose, onCardClick }) => {
     </div>
   );
 };
-export default ImagePopup;

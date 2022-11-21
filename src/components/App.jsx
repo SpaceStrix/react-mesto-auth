@@ -138,14 +138,13 @@ const App = () => {
       });
   };
 
-  const cBackAuth = useCallback(data => {
+  const onAuth = useCallback(data => {
     localStorage.setItem("jwt", data.token);
     setLoggedIn(true);
     setUserData(data.user);
     navigate("/");
   }, []);
-
-  const tokenCheck = useCallback(async () => {
+  const onTokenCheck = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -168,8 +167,7 @@ const App = () => {
       setLoading(false);
     }
   }, []);
-
-  const cBackLogin = useCallback(async ({ password, email }) => {
+  const onLogin = useCallback(async ({ password, email }) => {
     try {
       setLoading(true);
       const data = await auth.login({ password, email });
@@ -177,7 +175,7 @@ const App = () => {
         throw new Error("Неверный пароль или почта");
       }
       if (data.token) {
-        cBackAuth(data);
+        onAuth(data);
       }
       setUserData(email);
       return data;
@@ -186,8 +184,7 @@ const App = () => {
       setLoading(false);
     }
   }, []);
-
-  const cBackReg = useCallback(
+  const onRegistration = useCallback(
     async ({ password, email }) => {
       try {
         setLoading(true);
@@ -195,10 +192,10 @@ const App = () => {
         setNotificationPopup(true);
         setNotificationAnswer(true);
         setTimeout(() => {
-          cBackLogin({ password, email });
+          onLogin({ password, email });
         }, 300);
 
-        cBackAuth(data);
+        onAuth(data);
         return data;
       } catch {
         setNotificationPopup(true);
@@ -207,10 +204,9 @@ const App = () => {
         setLoading(false);
       }
     },
-    [cBackAuth]
+    [onAuth]
   );
-
-  const cBackLogOut = () => {
+  const onLogOut = () => {
     localStorage.removeItem("jwt");
     setUserData("");
     navigate("sign-in");
@@ -218,13 +214,13 @@ const App = () => {
   };
 
   useEffect(() => {
-    tokenCheck();
-  }, [tokenCheck]);
+    onTokenCheck();
+  }, [onTokenCheck]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <>
-        <Header onLogout={cBackLogOut} email={userData} />
+        <Header onLogout={onLogOut} email={userData} />
         {loading ? (
           <Loading />
         ) : (
@@ -248,11 +244,11 @@ const App = () => {
             />
             <Route
               path="sign-in"
-              element={<Login onLogin={cBackLogin} loggedIn={loggedIn} />}
+              element={<Login onLogin={onLogin} loggedIn={loggedIn} />}
             />
             <Route
               path="sign-up"
-              element={<Register onReg={cBackReg} loggedIn={loggedIn} />}
+              element={<Register onReg={onRegistration} loggedIn={loggedIn} />}
             />
             <Route path="404" element={<Navigate to="/404" replace />} />
             <Route path="*" element={<PageNotFound />} />

@@ -1,21 +1,13 @@
-# [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Inter&size=32&color=010808&vCenter=true&width=500&lines=%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D0%B0%D1%8F+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0+'%D0%9C%D0%B5%D1%81%D1%82%D0%BE')](https://git.io/typing-svg)
+# [![Typing SVG](https://readme-typing-svg.demolab.com?font=Roboto&pause=1000&color=DFA5F7&width=435&lines=%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D0%B0%D1%8F+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0+React-Mesto-Auth)](https://git.io/typing-svg)
 
 ## Описание проектной работы
 
-Проектрая работа Mesto - это одностраничный сайт о путешествиях.
+Все та же проектная работа [Mesto-React](https://spacestrix.github.io/mesto-react/) но с новыми возможностями.
 
 ## Функциональные возможноти:
 
-- Редактирование своего профиля.
-- Добавление/удаление фотокарточек.
-- Возможность оценить фотокарточку лайком.
-- Посмотреть фотографию в большом разрешении.
-- Реализована валидация форм.
-- Popup окна.
-
-## Посмотреть работу -->
-
-[Клац](https://spacestrix.github.io/mesto-react/)
+- Регистрация.
+- Авторизация.
 
 ## Используемые языки и технологии
 

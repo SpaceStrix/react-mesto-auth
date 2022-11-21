@@ -1,8 +1,3 @@
-import { PopupWithForm } from "./PopupWithForm";
-
-import successfully from "../images/successfully.png";
-import notSuccessfully from "../images/not-successful.png";
-
 export const InfoTooltip = ({ status, isOpen, onClose }) => {
   return (
     <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
@@ -13,7 +8,14 @@ export const InfoTooltip = ({ status, isOpen, onClose }) => {
           type="button"
           onClick={onClose}
         />
-        <img src={status ? successfully : notSuccessfully} alt="img-status" />
+        <img
+          src={
+            status
+              ? require("../images/successfully.png")
+              : require("../images/not-successful.png")
+          }
+          alt="img-status"
+        />
         <p className="status-auth__title">
           {status
             ? "Вы успешно зарегистрировались!"

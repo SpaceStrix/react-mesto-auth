@@ -250,7 +250,6 @@ const App = () => {
               path="sign-up"
               element={<Register onReg={onRegistration} loggedIn={loggedIn} />}
             />
-            <Route path="404" element={<Navigate to="/404" replace />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         )}

@@ -12,9 +12,10 @@
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .header {
-    padding-top: 28px;
     padding-bottom: 31.6px;
-    width: calc(100% - 27px * 2);
+    padding-left: 27px;
+    padding-right: 27px;
+    padding-top: 28px;
   }
 }
 
@@ -43,7 +44,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin: 0 auto;
   width: 100%;
   height: 100%;
   margin-top: 60px;
@@ -87,11 +88,12 @@
 
 .signup__btn-auth {
   margin-bottom: 15px;
-  padding: 14px 84px;
+  padding: 14px 0;
   width: 100%;
   background: #ffffff;
   border-radius: 2px;
   transition: all 0.3s linear;
+  border: none;
 }
 .signup__btn-auth:hover {
   cursor: pointer;
@@ -112,13 +114,23 @@
   color: #a9a9a9;
 }
 
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .signup,
+  .signup-form {
+    width: calc(100% - 10px * 2);
+  }
+  .signup__group {
+    margin-bottom: 173px;
+  }
+}
+
 .header__user {
   display: flex;
   justify-content: end;
   gap: 24px;
 }
 
-/* LOADER */
+/* LOADING */
 .spinner {
   color: official;
   display: inline-block;
@@ -249,4 +261,17 @@
   margin: 0;
   text-align: center;
   color: #000000;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .popup__auth {
+    padding: 25px 22px;
+    width: calc(100% - 19px * 2);
+  }
+  .status-auth__title {
+    font-size: 20px;
+  }
+  .signup__btn-auth {
+    font-size: 16px;
+  }
 }

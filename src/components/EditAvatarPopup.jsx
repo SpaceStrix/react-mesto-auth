@@ -22,8 +22,10 @@ export const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar }) => {
     <PopupWithForm
       isOpen={isOpen}
       onClose={onClose}
+      name={"avatar"}
       title={"Обновить аватар"}
       btnText={"Сохранить"}
+      onSubmit={handleSubmit}
     >
       <label className="popup__label">
         <input

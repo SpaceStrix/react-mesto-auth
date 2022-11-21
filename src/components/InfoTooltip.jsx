@@ -4,7 +4,6 @@ import successfully from "../images/successfully.png";
 import notSuccessfully from "../images/not-successful.png";
 
 export const InfoTooltip = ({ status, isOpen, onClose }) => {
-  console.log(status);
   return (
     <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__auth">

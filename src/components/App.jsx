@@ -27,6 +27,10 @@ const App = () => {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+
+  const [notificationPopup, setNotificationPopup] = useState(false);
+  const [notificationAnswer, setNotificationAnswer] = useState(false);
+
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -68,6 +72,7 @@ const App = () => {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setNotificationPopup(false);
     setSelectedCard({});
   };
   const handleCardLike = card => {
@@ -187,6 +192,8 @@ const App = () => {
       try {
         setLoading(true);
         const data = await auth.register({ password, email });
+        setNotificationPopup(true);
+        setNotificationAnswer(true);
         setTimeout(() => {
           cBackLogin({ password, email });
         }, 300);
@@ -194,6 +201,8 @@ const App = () => {
         cBackAuth(data);
         return data;
       } catch {
+        setNotificationPopup(true);
+        setNotificationAnswer(false);
       } finally {
         setLoading(false);
       }
@@ -269,6 +278,11 @@ const App = () => {
           card={selectedCard}
           onClose={closeAllPopups}
           name={"image"}
+        />
+        <InfoTooltip
+          isOpen={notificationPopup}
+          onClose={closeAllPopups}
+          status={notificationAnswer}
         />
       </>
     </CurrentUserContext.Provider>

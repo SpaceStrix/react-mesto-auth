@@ -19,14 +19,7 @@ export const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar }) => {
   }
 
   return (
-    <PopupWithForm
-      isOpen={isOpen}
-      onClose={onClose}
-      name={"avatar"}
-      title={"Обновить аватар"}
-      btnText={"Сохранить"}
-      onSubmit={handleSubmit}
-    >
+    <PopupWithForm isOpen={isOpen} onClose={onClose} title={"Обновить аватар"}>
       <label className="popup__label">
         <input
           type="url"

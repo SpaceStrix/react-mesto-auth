@@ -1,9 +1,19 @@
 export const ImagePopup = ({ card, name, onClose, onCardClick }) => {
+  const onOverlayClick = e => {
+    onClose();
+    e.stopPropagation();
+  };
+
+  const onPopupClick = e => {
+    e.stopPropagation();
+  };
+
   return (
     <div
       className={`popup popup_type_${name} ${card.link ? "popup_opened" : ""}`}
+      onClick={onOverlayClick}
     >
-      <div className="img-container">
+      <div className="img-container" onClick={onPopupClick}>
         <figure className="img-container__block">
           <img
             src={card.link}

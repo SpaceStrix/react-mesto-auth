@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
-import { ProtectedRoute } from "./ProtectedRoute";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import { Header } from "./Heades";
 import { Loading } from "./Loading";
@@ -18,12 +17,11 @@ import { AddPlacePopup } from "./AddPlacePopup";
 import * as auth from "./Auth";
 import { Login } from "./Login";
 import { Register } from "./Register";
-
-//
+import { ProtectedRoute } from "./ProtectedRoute";
 
 import { api } from "../utils/api";
 
-const App = () => {
+export const App = () => {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -54,8 +52,6 @@ const App = () => {
     }
   }, [loggedIn]);
 
-  // =========================================
-  // callback open
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
   };
@@ -283,5 +279,3 @@ const App = () => {
     </CurrentUserContext.Provider>
   );
 };
-
-export default App;

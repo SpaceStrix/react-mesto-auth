@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 export const PopupWithForm = ({
   name,
   isOpen,
@@ -7,9 +9,31 @@ export const PopupWithForm = ({
   title,
   btnText,
 }) => {
+  const onOverlayClick = e => {
+    onClose();
+    e.stopPropagation();
+  };
+
+  const onPopupClick = e => {
+    e.stopPropagation();
+  };
+
+  useEffect(() => {
+    const closeByCkick = e => {
+      if (e.key === "Escape") {
+        onClose && onClose();
+      }
+    };
+    document.addEventListener("keydown", closeByCkick);
+    return () => document.removeEventListener("keydown", closeByCkick);
+  }, []);
+
   return (
-    <div className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`}>
-      <div className="popup__container">
+    <div
+      className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`}
+      onClick={onOverlayClick}
+    >
+      <div className="popup__container" onClick={onPopupClick}>
         <button
           className="popup__close"
           aria-label="Кнопка закрытия попапа"

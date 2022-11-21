@@ -14,7 +14,7 @@ import { EditProfilePopup } from "./EditProfilePopup";
 import { EditAvatarPopup } from "./EditAvatarPopup";
 import { AddPlacePopup } from "./AddPlacePopup";
 
-import * as auth from "./Auth";
+import * as auth from "../utils/Auth";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -99,12 +99,10 @@ export const App = () => {
       .setNewUserInfo(newData)
       .then(data => {
         setCurrentUser(data);
+        closeAllPopups();
       })
       .catch(err => {
         console.error(err);
-      })
-      .finally(() => {
-        closeAllPopups();
       });
   };
   const handleUpdateAvatar = newUrl => {
@@ -112,12 +110,10 @@ export const App = () => {
       .setNewAvatar(newUrl)
       .then(data => {
         setCurrentUser(data);
+        closeAllPopups();
       })
       .catch(err => {
         console.error(err);
-      })
-      .finally(() => {
-        closeAllPopups();
       });
   };
   const handleAddPlaceSubmit = newCard => {
@@ -125,12 +121,10 @@ export const App = () => {
       .addNewCardToServer(newCard)
       .then(data => {
         setCards([data, ...cards]);
+        closeAllPopups();
       })
       .catch(err => {
         console.error(err);
-      })
-      .finally(() => {
-        closeAllPopups();
       });
   };
 
@@ -144,7 +138,7 @@ export const App = () => {
     try {
       setLoading(true);
 
-      let jwt = localStorage.getItem("jwt");
+      const jwt = localStorage.getItem("jwt");
       if (!jwt) {
         throw new Error("no token");
       }
